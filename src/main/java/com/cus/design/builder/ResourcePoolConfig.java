@@ -1,59 +1,79 @@
 package com.cus.design.builder;
 
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author zhaojiejun
  * @date 2020/8/2 1:19 下午
  **/
+@Getter
 public class ResourcePoolConfig {
-
-    private static final int DEFAULT_MAX_TOTAL = 8;
-
-    private static final int DEFAULT_MAX_IDLE = 8;
-
-    private static final int DEFAULT_MIN_IDLE = 0;
-
-
     private String name;
+    private int maxTotal;
+    private int maxIdle;
+    private int minIdle;
 
-    private int maxTotal = DEFAULT_MAX_TOTAL;
-
-    private int maxIdle = DEFAULT_MAX_IDLE;
-
-    private int minIdle = DEFAULT_MIN_IDLE;
-
-    public ResourcePoolConfig(String name) {
-        if (StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException("name should not be empty.");
-        }
-        this.name = name;
+    private ResourcePoolConfig(Builder builder) {
+        this.name = builder.name;
+        this.maxTotal = builder.maxTotal;
+        this.maxIdle = builder.maxIdle;
+        this.minIdle = builder.minIdle;
     }
 
-    public void setMaxTotal(Integer maxTotal) {
-        if (maxTotal != null) {
+    public static class Builder {
+        private static final int DEFAULT_MAX_TOTAL = 8;
+        private static final int DEFAULT_MAX_IDLE = 8;
+        private static final int DEFAULT_MIN_IDLE = 0;
+        private String name;
+        private int maxTotal = DEFAULT_MAX_TOTAL;
+        private int maxIdle = DEFAULT_MAX_IDLE;
+        private int minIdle = DEFAULT_MIN_IDLE;
+
+        public ResourcePoolConfig build() {
+            // 校验逻辑放到这里来做，包括必填项校验、依赖关系校验、约束条件校验等
+            if (StringUtils.isBlank(name)) {
+                throw new IllegalArgumentException("...");
+            }
+            if (maxIdle > maxTotal) {
+                throw new IllegalArgumentException("...");
+            }
+            if (minIdle > maxTotal || minIdle > maxIdle) {
+                throw new IllegalArgumentException("...");
+            }
+            return new ResourcePoolConfig(this);
+        }
+
+        public Builder setName(String name) {
+            if (StringUtils.isBlank(name)) {
+                throw new IllegalArgumentException("...");
+            }
+            this.name = name;
+            return this;
+        }
+
+        public Builder setMaxTotal(int maxTotal) {
             if (maxTotal <= 0) {
-                throw new IllegalArgumentException("maxTotal should be positive.");
+                throw new IllegalArgumentException("...");
             }
             this.maxTotal = maxTotal;
+            return this;
         }
-    }
 
-    public void setMaxIdle(Integer maxIdle) {
-        if (maxIdle != null) {
+        public Builder setMaxIdle(int maxIdle) {
             if (maxIdle < 0) {
-                throw new IllegalArgumentException("maxIdle should not be negative.");
+                throw new IllegalArgumentException("...");
             }
             this.maxIdle = maxIdle;
+            return this;
         }
-    }
 
-    public void setMinIdle(Integer minIdle) {
-        if (minIdle != null) {
+        public Builder setMinIdle(int minIdle) {
             if (minIdle < 0) {
-                throw new IllegalArgumentException("minIdle should not be negative.");
+                throw new IllegalArgumentException("...");
             }
             this.minIdle = minIdle;
+            return this;
         }
     }
 }
