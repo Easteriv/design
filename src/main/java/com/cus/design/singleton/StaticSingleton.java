@@ -6,11 +6,11 @@ package com.cus.design.singleton;
  **/
 public class StaticSingleton {
     private static class SingletonHold{
-        private static final StaticSingleton instance = new StaticSingleton();
+        private static final StaticSingleton INSTANCE = new StaticSingleton();
     }
     private StaticSingleton(){};
 
     public static StaticSingleton getInstance(){
-        return SingletonHold.instance;
+        return SingletonHold.INSTANCE;
     }
 }
