@@ -9,10 +9,10 @@ import org.apache.commons.lang3.StringUtils;
  **/
 @Getter
 public class ResourcePoolConfig {
-    private String name;
-    private int maxTotal;
-    private int maxIdle;
-    private int minIdle;
+    private final String name;
+    private final int maxTotal;
+    private final int maxIdle;
+    private final int minIdle;
 
     private ResourcePoolConfig(Builder builder) {
         this.name = builder.name;
