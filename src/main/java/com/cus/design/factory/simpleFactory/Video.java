@@ -6,8 +6,7 @@ package com.cus.design.factory.simpleFactory;
  **/
 public abstract class Video {
     /**
-     * 视频播放方法
-     * 不同视频拥有不同的播放方法
+     * the method for play,different video can play different
      */
     public abstract void play();
 }

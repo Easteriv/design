@@ -9,7 +9,7 @@ import java.util.Optional;
  * @date 2020/8/28 12:03 上午
  **/
 public class PornHandler extends AbstractHandler {
-    private final String keyWord = "黄色";
+    private final static String keyWord = "黄色";
 
     @Override
     public void doHandler(Article article) {

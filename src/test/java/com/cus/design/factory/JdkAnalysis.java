@@ -9,5 +9,6 @@ import java.util.Calendar;
 public class JdkAnalysis {
     public void testCalendar(){
         Calendar instance = Calendar.getInstance();
+        System.out.println(instance);
     }
 }
