@@ -15,7 +15,7 @@ public class LazySingleTest {
     /**
      * 模拟client_num个客户端同时访问
      */
-    private static int CLIENT_NUM = 1000;
+    private static final int CLIENT_NUM = 1000;
 
 
     /**
