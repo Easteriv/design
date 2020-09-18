@@ -5,8 +5,13 @@ package com.cus.design.singleton;
  */
 
 public enum EnumSingleton {
-    INSTANCE;
-
+    INSTANCE{
+        @Override
+        public void print(){
+            System.out.println("helloWorld");
+        }
+    };
+    protected abstract void print();
     public static EnumSingleton getInstance(){
         return INSTANCE;
     }
