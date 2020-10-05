@@ -11,7 +11,7 @@ public class PowerAdapterTest {
     @DisplayName("电源适配器，将220v适配成5v")
     @Test
     void testPowerAdapter(){
-        PowerAdapter powerAdapter = new PowerAdapter();
-        powerAdapter.outPutDc5();
+        Dc5 dc5 = new PowerAdapter();
+        dc5.outPutDc5();
     }
 }

@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  **/
 @Slf4j
 public class PowerAdapter implements Dc5{
-    private Ac220 ac220 = new Ac220();
+    private final Ac220 ac220 = new Ac220();
 
     @Override
     public Integer outPutDc5() {
