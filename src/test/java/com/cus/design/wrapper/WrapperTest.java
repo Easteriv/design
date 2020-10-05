@@ -1,7 +1,12 @@
 package com.cus.design.wrapper;
 
+import com.cus.design.wrapper.map.AbstractMap;
+import com.cus.design.wrapper.map.MyHashMap;
+import com.cus.design.wrapper.map.MyWrapperMap;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+
+import java.util.Map;
 
 /**
  * @author zhaojiejun
@@ -19,5 +24,13 @@ public class WrapperTest {
         //加了根香肠
         SausagePancakes sausagePancakes = new SausagePancakes(eggPancakes);
         log.info("名称：{},价格:{}",sausagePancakes.getDesc(),sausagePancakes.cost());
+    }
+
+    @Test
+    void testMapWrapper() {
+        AbstractMap abstractMap = new MyHashMap();
+        MyWrapperMap myWrapperMap = new MyWrapperMap(abstractMap);
+        Map<String, String> put = myWrapperMap.put("test", "test");
+        System.out.println(put);
     }
 }
